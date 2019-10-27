@@ -1,0 +1,29 @@
+App Idea: Word dive
+    - Re-create the sensation that wikipedia has when link diving but with related words.
+    - Uses the Oxford Dictionary API
+    - Simple interface displays info about current words.
+    - Need to generate interest in other related words...
+    - Button to randomly select a related word.
+
+What are related words?
+    - Synonyms
+    - Same root (etymology)
+    - Rhyme... (how to tell?)
+    - Occurs in same context frequently
+    - Special traits (palindrome, acronym, anagrams)
+
+Selecting random related words
+    - Define relationship catetgories
+    - Randomly select category
+    - Randomly select word from category
+
+Gathering the information required
+    - Thesaurus API exists
+    - Need to parse etymology if exists
+    - Rhymes could be found with IPA pronunciation (need rhyme mappings for phonemes)
+
+MVP
+    1. Search for words.
+    2. Display Interesting data about queried word
+    3. Have links to Synonyms
+    4. Pick random Synonym
