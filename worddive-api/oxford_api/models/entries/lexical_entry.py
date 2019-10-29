@@ -1,0 +1,34 @@
+from typing import List
+from .entry import Entry
+from oxford_api.models.common.pronunciation import Pronunciation
+from .related_entry import RelatedEntry
+from oxford_api.models.common.grammatical_feature import GrammaticalFeature
+from oxford_api.models.common.variant_form import VariantForm
+from oxford_api.models.common.categorized_text import CategorizedText
+from oxford_api.models.common.lexical_category import LexicalCategory
+
+
+class LexicalEntry:
+    def __init__(self, api_result):
+        self.derivative_of: List[RelatedEntry] = [RelatedEntry(
+            d) for d in api_result.get('derivativeOf') or []]
+        self.derivatives: List[RelatedEntry] = [RelatedEntry(
+            d) for d in api_result.get('derivatives') or []]
+        self.entries: List[Entry] = [
+            Entry(e) for e in api_result.get('entries') or []]
+        self.grammatical_features: List[GrammaticalFeature] = [
+            GrammaticalFeature(g) for g in api_result.get('grammaticalFeatures') or []]
+        self.notes: List[CategorizedText] = [
+            CategorizedText(n) for n in api_result.get('notes') or []]
+        self.pronunciations: List[Pronunciation] = [Pronunciation(
+            p) for p in api_result.get('pronunciations') or []]
+        self.variantForms: List[VariantForm] = [VariantForm(
+            f) for f in api_result.get('variantForms') or []]
+
+        self.language: str = api_result.get('language')
+        self.text: str = api_result.get('text')
+
+        self.lexical_category: LexicalCategory = None
+        if 'lexicalCategory' in api_result:
+            self.lexical_category = LexicalCategory(
+                api_result.get('lexicalCategory'))

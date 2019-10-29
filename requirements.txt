@@ -1,0 +1,26 @@
+astroid==2.3.2
+autopep8==1.4.4
+certifi==2019.9.11
+chardet==3.0.4
+Click==7.0
+colorama==0.4.1
+Flask==1.1.1
+idna==2.8
+isort==4.3.21
+itsdangerous==1.1.0
+Jinja2==2.10.3
+jsonpickle==1.2
+lazy-object-proxy==1.4.3
+MarkupSafe==1.1.1
+mccabe==0.6.1
+-e git+git@github.com:krisboyce/dictionary.git@d420315c6aadb6e4cb38806a90a0ed9e9d90d369#egg=oxford_api&subdirectory=worddive-api\oxford_api
+pep8==1.7.1
+pycodestyle==2.5.0
+pylint==2.4.3
+requests==2.22.0
+six==1.12.0
+urllib3==1.25.6
+virtualenv==16.7.6
+Werkzeug==0.16.0
+-e git+git@github.com:krisboyce/dictionary.git@d420315c6aadb6e4cb38806a90a0ed9e9d90d369#egg=worddive&subdirectory=worddive-api\worddive
+wrapt==1.11.2
