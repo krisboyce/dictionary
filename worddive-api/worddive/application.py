@@ -24,11 +24,12 @@ def index():
 def define(word):
     service = WordService(environ['APP_ID'], environ['APP_KEY'])
     word_definition = service.get_word(word)
-    return Response(json.dumps(word_definition, default=lambda o: o.__dict__, indent=4), mimetype='application/json')
+    return Response(json.dumps(word_definition,
+                    default=lambda o: o.__dict__, indent=4),
+                    mimetype='application/json')
 
 
 @app.route('/thesaurus/<word>')
 def thes(word):
     service = WordService(environ['APP_ID'], environ['APP_KEY'])
-    # jsonify(json.loads(json.dumps(.__dict__, default=lambda o: o.__dict__), encoding='utf-8'))
     return service.thesaurus(word)

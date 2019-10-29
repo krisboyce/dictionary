@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 from .synonym_antonym import SynonymAntonym
 from oxford_api.models.common.domain import Domain
 from oxford_api.models.common.example import Example
@@ -7,7 +7,7 @@ from oxford_api.models.common.register import Register
 
 
 class ThesaurusSense:
-    def __init__(self, api_result):
+    def __init__(self, api_result: Any):
         self.antonyms: List[SynonymAntonym] = [
             SynonymAntonym(a) for a in api_result.get('antonyms') or []]
         self.domains: List[Domain] = [

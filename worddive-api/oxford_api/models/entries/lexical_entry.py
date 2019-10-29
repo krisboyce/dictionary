@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any, Optional
 from .entry import Entry
 from oxford_api.models.common.pronunciation import Pronunciation
 from .related_entry import RelatedEntry
@@ -9,7 +9,7 @@ from oxford_api.models.common.lexical_category import LexicalCategory
 
 
 class LexicalEntry:
-    def __init__(self, api_result):
+    def __init__(self, api_result: Any):
         self.derivative_of: List[RelatedEntry] = [RelatedEntry(
             d) for d in api_result.get('derivativeOf') or []]
         self.derivatives: List[RelatedEntry] = [RelatedEntry(
@@ -28,7 +28,7 @@ class LexicalEntry:
         self.language: str = api_result.get('language')
         self.text: str = api_result.get('text')
 
-        self.lexical_category: LexicalCategory = None
+        self.lexical_category: Optional[LexicalCategory] = None
         if 'lexicalCategory' in api_result:
             self.lexical_category = LexicalCategory(
                 api_result.get('lexicalCategory'))

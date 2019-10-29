@@ -1,10 +1,10 @@
-from typing import List
+from typing import List, Any
 from oxford_api.models.common.pronunciation import Pronunciation
 from .lexical_entry import LexicalEntry
 
 
 class HeadwordEntry:
-    def __init__(self, api_result):
+    def __init__(self, api_result: Any):
         self.id: str = api_result.get('id')
         self.language: str = api_result.get('language')
         self.type_: str = api_result.get('type')

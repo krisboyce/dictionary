@@ -16,7 +16,7 @@ class Word:
                 for entry in lex.entries
                     for e in entry.etymologies or []]
 
-        self.pronunciations: List[dict] = [p for p in headword.pronunciations]
+        self.pronunciations: List[Pronunciation] = [p for p in headword.pronunciations]
         self.pronunciations += [p
             for lex_entry in headword.lexical_entries
                 for p in lex_entry.pronunciations]

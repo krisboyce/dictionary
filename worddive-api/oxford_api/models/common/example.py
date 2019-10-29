@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 from .domain import Domain
 from .categorized_text import CategorizedText
 from .region import Region
@@ -6,7 +6,7 @@ from .register import Register
 
 
 class Example:
-    def __init__(self, api_result):
+    def __init__(self, api_result: Any):
         self.definitions: List[str] = api_result.get('definitions')
         self.domains: List[Domain] = [
             Domain(d) for d in api_result.get('domains') or []]

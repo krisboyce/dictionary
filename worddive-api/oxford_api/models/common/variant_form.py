@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 from .categorized_text import CategorizedText
 from .pronunciation import Pronunciation
 from .domain import Domain
@@ -7,7 +7,7 @@ from .register import Register
 
 
 class VariantForm:
-    def __init__(self, api_result):
+    def __init__(self, api_result: Any):
         self.domains: List[Domain] = [
             Domain(d) for d in api_result.get('domains') or []]
         self.notes: List[CategorizedText] = [

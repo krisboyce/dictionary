@@ -8,7 +8,7 @@ class WordSense():
         self.lexicalCategory: str = category
         self.definitions: List[str] = sense.definitions or []
         self.examples: List[str] = [e.text for e in sense.examples]
-        self.related_words = {
-            'thesaurus_links': [{'sense_id': link.sense_id} for link in sense.thesaurus_links],
-            'cross_references': []
-        }
+        self.thesaurus_sense_ids: List[str] = [link.sense_id for link in sense.thesaurus_links]
+        self.synonyms: List[str] = []
+        self.antonyms: List[str] = []
+        self.cross_references: List[str] = []
