@@ -1,9 +1,6 @@
 import inspect
 import json
-from os import environ
-
 from flask import Flask, Response
-
 from worddive.services.word_service import WordService
 
 
@@ -22,14 +19,20 @@ def index():
 
 @app.route('/define/<word>')
 def define(word):
-    service = WordService(environ['APP_ID'], environ['APP_KEY'])
+    service = WordService()
     word_definition = service.get_word(word)
     return Response(json.dumps(word_definition,
-                    default=lambda o: o.__dict__, indent=4),
-                    mimetype='application/json')
+                               default=lambda o: o.__dict__, indent=4),
+                    mimetype='application/json', headers={
+        'Access-Control-Allow-Origin': '*'
+    })
 
 
-@app.route('/thesaurus/<word>')
-def thes(word):
-    service = WordService(environ['APP_ID'], environ['APP_KEY'])
-    return service.thesaurus(word)
+@app.route('/analyze/<text>')
+def thes(text):
+    service = WordService()
+    lemmas = service.get_lemma(text)
+
+    return Response(json.dumps(lemmas, indent=4), mimetype='application/json', headers={
+        'Access-Control-Allow-Origin': '*'
+    })

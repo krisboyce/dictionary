@@ -4,6 +4,7 @@
 
 Icon
 ._*
+*.vs/
 .Spotlight-V100
 .Trashes
 .AppleDB
@@ -48,6 +49,7 @@ target/
 *.pot
 *.pyc
 __pycache__/
+*.mypy_cache/
 local_settings.py
 
 .env
