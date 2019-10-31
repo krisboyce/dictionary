@@ -1,5 +1,5 @@
 import React from 'react'
-import {SearchableText} from './SearchText'
+import {SearchableText} from './WordPage/SearchText'
 
 export class HomePage extends React.Component{
     render(){
