@@ -1,51 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom'
+import {Button, makeStyles} from '@material-ui/core'
 
-export class LookupWord extends React.Component {
+let useStyles = makeStyles({
+    button: {
+      padding: '1px',
+      margin: '1px',
+      minWidth: '0px',
+      color: 'inherit',
+      textDecoration: 'none'
+    },
+  });
 
-    constructor(props){
-        super(props)
-        this.state = {
-            active: false,
-            lemma: null
+export default function LookupWord(props){
+    const [active, setActive] = useState(false)
+    const [lemma, setLemma] = useState(null)
+    const classes = useStyles();
+    
+    const onMouseEnter = () =>
+    {
+      setTimeout(async () => {
+        setActive(true)
+        if(!lemma){
+          let result = await fetch('http://20191101t163354-dot-worddive-1572382941629.appspot.com/analyze/' + props.lemma.replace(/\W/g, "")).then(blob => blob.json())
+          if(result.length > 0) {
+            setLemma(result[0][2])
+          }
         }
-        this.interval = -1;
-        this.hover = false;
+      }, 50)
     }
 
-    onMouseEnter(){
-        this.hover = true;
-        this.timeout = setTimeout(() => {
-            if(this.hover){
-                this.setState({active: true})
-                if(this.state.lemma == null){
-                    console.log(this.props.display.replace(/[^0-9A-Za-z|']/g, ''))
-                    fetch('http://127.0.0.1:5000/analyze/' + this.props.display.replace(/[^0-9A-Za-z]/g, ''))
-                    .then(blob => blob.json())
-                    .then(json => {
-                        let words = json.filter(x => x[2] != null)
-                        this.setState({
-                            lemma: words.length > 0 ? words[0][2] : null
-                        })
-                    })
-                }
-            }
-        }, 100)
+    const onMouseLeave = () => {
+      setTimeout(async () => {
+        setActive(false)
+      }, 50)
     }
 
-    onMouseLeave(){
-        clearTimeout(this.timeout);
-        this.hover = false;
-        this.setState({active: false})
-    }
+    return (<span onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        <span>{active}</span>
 
-    render(){
-        return <span onMouseEnter={this.onMouseEnter.bind(this)} onMouseLeave={this.onMouseLeave.bind(this)}>
-            {
-                this.state.active && this.state.lemma
-                ? <Link to={this.state.lemma} >{this.props.display}</Link>
-                : this.props.display
-            }
-        </span>
-    }
+        {
+            active && lemma
+            ? <Button className={classes.button} component={Link} size="small" to={"/dive/" + lemma}>{props.display}</Button>
+            : props.display
+        }
+    </span>)
 }

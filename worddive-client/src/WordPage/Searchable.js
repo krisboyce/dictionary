@@ -1,32 +1,41 @@
 import React from 'react'
-import { LookupWord } from './lookupWord'
+import LookupWord from './LookupWord'
 
-export class Searchable extends React.Component{
+export default class Searchable extends React.Component{
     constructor(props){
         super(props)
-        this.render_elements = React.Children.map(this.props.children, x => {
-            if(typeof x == 'string'){
-                return this.make_searchable(x)
-            }else if(x.type === Searchable || x.type === LookupWord){
-                return x
-            }else{
-                return React.cloneElement(x, {
-                    children: [<Searchable>x.props.children</Searchable>]
-                })
+
+        this.element = React.createRef();
+
+        this.render_elements = React.Children.map(this.props.children, (x, i) => {
+            if(x != null){
+                if(typeof x == 'string'){
+                    return this.make_searchable(x)
+                }else if(x.type === Searchable || x.type === LookupWord){
+                    return x
+                }else{
+                    if(!x.props.children)
+                        return x
+
+                    return React.cloneElement(x, {
+                        children: [<Searchable key={i}>{x.props.children}</Searchable>]
+                    })
+                }
             }
         })
     }
 
     make_searchable(text){
-        return <span>{text.split(' ').map(x => {
-            return <span>
-                <span>{' '}</span>
-                {x !== '' ? <LookupWord lemma={x} display={x}/> : <span>{' '}</span>}
-            </span>
-        })}</span>
+        return <React.Fragment>
+        {text.split(' ').map((x, i) => {
+            return <React.Fragment key={i}>
+                {i > 0 ? ' ' : null}
+                {x !== '' ? <LookupWord key={i} lemma={x} display={x}/> : ' '}
+            </React.Fragment>
+        })}</React.Fragment>
     }
 
     render(){
-        return <span>{this.render_elements}</span>
+        return <React.Fragment>{this.render_elements}</React.Fragment>
     }
 }
