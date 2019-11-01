@@ -1,9 +1,9 @@
 from typing import List
-from oxford_api.models.entries.lexical_entry import LexicalEntry
-from oxford_api.models.entries.entry import Entry
-from oxford_api.models.entries.sense import Sense
-from oxford_api.models.entries.headword_entry import HeadwordEntry
-from oxford_api.models.common.pronunciation import Pronunciation
+from .oxford_api.models.lexical_entry import LexicalEntry
+from .oxford_api.models.entry import Entry
+from .oxford_api.models.sense import Sense
+from .oxford_api.models.headword_entry import HeadwordEntry
+from .oxford_api.models.pronunciation import Pronunciation
 from .word_sense import WordSense
 import re
 

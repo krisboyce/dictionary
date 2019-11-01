@@ -1,5 +1,5 @@
 from typing import List
-from oxford_api.models.entries.sense import Sense
+from .oxford_api.models.sense import Sense
 
 class WordSense():
     def __init__(self, category: str, sense: Sense, parent_sense: Sense=None):

@@ -1,9 +1,8 @@
-from typing import List
-from oxford_api.models.common.pronunciation import Pronunciation
-from oxford_api.models.common.grammatical_feature import GrammaticalFeature
-from oxford_api.models.common.variant_form import VariantForm
-from oxford_api.models.common.categorized_text import CategorizedText
 from typing import List, Any
+from .pronunciation import Pronunciation
+from .grammatical_feature import GrammaticalFeature
+from .variant_form import VariantForm
+from .categorized_text import CategorizedText
 from .sense import Sense
 
 

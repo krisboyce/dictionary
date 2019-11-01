@@ -1,8 +1,7 @@
 import inspect
 import json
 from flask import Flask, Response
-from worddive.services.word_service import WordService
-
+from worddive.word_service import WordService
 
 class App(Flask):
     def Use(self, middleware):

@@ -1,8 +1,8 @@
 from typing import List, Any
 from .thesaurus_entry import ThesaurusEntry
-from oxford_api.models.common.grammatical_feature import GrammaticalFeature
-from oxford_api.models.common.lexical_category import LexicalCategory
-from oxford_api.models.common.variant_form import VariantForm
+from .grammatical_feature import GrammaticalFeature
+from .lexical_category import LexicalCategory
+from .variant_form import VariantForm
 
 
 class ThesaurusLexicalEntry:

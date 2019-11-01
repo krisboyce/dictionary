@@ -1,9 +1,9 @@
 from os import environ
 from typing import Dict
 import requests
-from .models.entries.retrieve_entry import RetrieveEntry
-from .models.thesaurus.thesaurus import Thesaurus
-from .models.search.wordlist import Wordlist
+from .models.retrieve_entry import RetrieveEntry
+from .models.thesaurus import Thesaurus
+from .models.wordlist import Wordlist
 
 
 class OxfordApiService:

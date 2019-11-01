@@ -1,6 +1,6 @@
 from typing import List, Any
-from oxford_api.models.common.grammatical_feature import GrammaticalFeature
-from oxford_api.models.common.variant_form import VariantForm
+from .grammatical_feature import GrammaticalFeature
+from .variant_form import VariantForm
 from .thesaurus_sense import ThesaurusSense
 
 

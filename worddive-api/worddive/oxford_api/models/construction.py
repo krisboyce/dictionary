@@ -1,9 +1,9 @@
 from typing import List, Any
-from oxford_api.models.common.domain import Domain
-from oxford_api.models.common.categorized_text import CategorizedText
-from oxford_api.models.common.region import Region
-from oxford_api.models.common.register import Register
-from oxford_api.models.common.example import Example
+from .domain import Domain
+from .categorized_text import CategorizedText
+from .region import Region
+from .register import Register
+from .example import Example
 
 
 class Contruction:

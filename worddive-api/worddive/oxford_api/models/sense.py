@@ -1,14 +1,14 @@
 from typing import List, Any
-from oxford_api.models.common.pronunciation import Pronunciation
+from .pronunciation import Pronunciation
 from .construction import Contruction
 from .cross_reference import CrossReference
-from oxford_api.models.common.domain import Domain
-from oxford_api.models.common.example import Example
-from oxford_api.models.common.categorized_text import CategorizedText
-from oxford_api.models.common.region import Region
-from oxford_api.models.common.register import Register
+from .domain import Domain
+from .example import Example
+from .categorized_text import CategorizedText
+from .region import Region
+from .register import Register
 from .thesaurus_link import ThesaurusLink
-from oxford_api.models.common.variant_form import VariantForm
+from .variant_form import VariantForm
 
 
 class Sense:

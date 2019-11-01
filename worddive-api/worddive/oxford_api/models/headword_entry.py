@@ -1,5 +1,5 @@
 from typing import List, Any
-from oxford_api.models.common.pronunciation import Pronunciation
+from .pronunciation import Pronunciation
 from .lexical_entry import LexicalEntry
 
 

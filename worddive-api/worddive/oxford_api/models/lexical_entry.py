@@ -1,11 +1,11 @@
 from typing import List, Any, Optional
 from .entry import Entry
-from oxford_api.models.common.pronunciation import Pronunciation
+from .pronunciation import Pronunciation
 from .related_entry import RelatedEntry
-from oxford_api.models.common.grammatical_feature import GrammaticalFeature
-from oxford_api.models.common.variant_form import VariantForm
-from oxford_api.models.common.categorized_text import CategorizedText
-from oxford_api.models.common.lexical_category import LexicalCategory
+from .grammatical_feature import GrammaticalFeature
+from .variant_form import VariantForm
+from .categorized_text import CategorizedText
+from .lexical_category import LexicalCategory
 
 
 class LexicalEntry:

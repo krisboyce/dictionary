@@ -1,9 +1,9 @@
 from typing import List, Any
 from .synonym_antonym import SynonymAntonym
-from oxford_api.models.common.domain import Domain
-from oxford_api.models.common.example import Example
-from oxford_api.models.common.region import Region
-from oxford_api.models.common.register import Register
+from .domain import Domain
+from .example import Example
+from .region import Region
+from .register import Register
 
 
 class ThesaurusSense:

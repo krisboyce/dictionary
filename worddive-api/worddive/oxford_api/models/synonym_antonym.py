@@ -1,7 +1,7 @@
 from typing import List, Any
-from oxford_api.models.common.domain import Domain
-from oxford_api.models.common.region import Region
-from oxford_api.models.common.register import Register
+from .domain import Domain
+from .region import Region
+from .register import Register
 
 
 class SynonymAntonym:
