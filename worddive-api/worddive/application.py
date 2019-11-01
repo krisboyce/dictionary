@@ -28,6 +28,13 @@ def define(word):
     })
 
 
+@app.route('/search/<query>')
+def search(query):
+    service = WordService()
+    return Response(json.dumps(service.search(query), default=lambda o: o.__dict__, indent=4),
+                    mimetype='applicaiton/json', headers={'Access-Control-Allow-Origin': '*'})
+
+
 @app.route('/analyze/<text>')
 def thes(text):
     service = WordService()

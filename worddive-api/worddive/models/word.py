@@ -5,13 +5,13 @@ from oxford_api.models.entries.sense import Sense
 from oxford_api.models.entries.headword_entry import HeadwordEntry
 from oxford_api.models.common.pronunciation import Pronunciation
 from .word_sense import WordSense
-
+import re
 
 class Word:
     def __init__(self, headword: HeadwordEntry):
         self.word_id: str = headword.id
         self.display_text: str = headword.word
-        self.etymologies: List[str] = [e 
+        self.etymologies: List[str] = [ re.sub('‘(.+?)’', ' ‘\\1’', e)
             for lex in headword.lexical_entries
                 for entry in lex.entries
                     for e in entry.etymologies or []]
@@ -46,7 +46,7 @@ class Word:
                 for entry in lex_entry.entries
                     for base_sense in entry.senses
                             for sense in 
-                                [WordSense(lex_entry.lexical_category.text, base_sense)] 
-                                + list(map(lambda x: WordSense(lex_entry.lexical_category.text, x, base_sense), base_sense.subsenses))]
+                                [WordSense(lex_entry.lexical_category.text if lex_entry.lexical_category else '', base_sense)] 
+                                + list(map(lambda x: WordSense(lex_entry.lexical_category.text if lex_entry.lexical_category else '', x, base_sense), base_sense.subsenses))]
 
         self.cross_references: List[str] = []

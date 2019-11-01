@@ -3,6 +3,7 @@ from typing import Dict
 import requests
 from .models.entries.retrieve_entry import RetrieveEntry
 from .models.thesaurus.thesaurus import Thesaurus
+from .models.search.wordlist import Wordlist
 
 
 class OxfordApiService:
@@ -13,11 +14,14 @@ class OxfordApiService:
         self.clientSecret = environ['APP_KEY']
         return
 
-    def entries(self, word: str, language:str = 'en', params:Dict[str, str] = {}) -> RetrieveEntry:
+    def entries(self, word: str, language:str = 'en-us', params:Dict[str, str] = {}) -> RetrieveEntry:
         return RetrieveEntry(self._get('entries/' + language + '/' + word, params=params))
 
-    def thesaurus(self, word: str, language:str = 'en', params:Dict[str, str] = {}) -> Thesaurus:
+    def thesaurus(self, word: str, language:str = 'en-us', params:Dict[str, str] = {}) -> Thesaurus:
         return Thesaurus(self._get('thesaurus/'+ language +'/' + word, params=params))
+
+    def search(self, query: str, language: str, params:Dict[str, str] = {}) -> Wordlist:
+        return Wordlist(self._get('search/' + language + '?q=' + query, params))
 
     def _get(self, route, headers={}, params={}):
         res = requests.get(self._uri + route, params=params,
