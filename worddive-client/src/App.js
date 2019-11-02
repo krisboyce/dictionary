@@ -6,13 +6,32 @@ import {
 } from "react-router-dom";
 import WordPage from './WordPage/WordPage';
 import { HomePage } from './home';
-import { CssBaseline, Container, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { CssBaseline, Container, createMuiTheme, MuiThemeProvider, responsiveFontSizes, useMediaQuery } from '@material-ui/core';
 import Header from './Layout/Header';
 import SearchPage from './Search/SearchPage';
 
+
+
 function App() {
-  const theme = createMuiTheme()
-  theme.spacing(200)
+  const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)');
+
+  const theme = React.useMemo(
+    () =>
+      responsiveFontSizes(createMuiTheme({
+        palette: {
+          type: prefersLightMode ? 'light' : 'dark',
+        },
+        props: {
+          MuiTypography: {
+            variantMapping: {
+              body1: 'span',
+              body2: 'span',
+            },
+          },
+        },
+      })),
+    [prefersLightMode],
+  );
 
   return (<Router>
             <MuiThemeProvider theme={theme}>

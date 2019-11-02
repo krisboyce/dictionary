@@ -14,7 +14,9 @@ const useStyles = makeStyles(theme => ({
   input:{
     color:'inherit',
     marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
+    margin: 'dense',
+    borderColor: '#fff'
   }
 }));
 
@@ -42,7 +44,8 @@ export default function SearchBox(props){
   const [doRedirect, setDoRedirect] = useState(false)
 
   const runSearch = (event) => {
-    setDoRedirect(true)
+    if(query && query["query-input"])
+      window.location.href = '/find/' + query["query-input"] //setDoRedirect(true)
   }
 
   const [handleSubmit, handleInputChange, query] = useSearch(runSearch)

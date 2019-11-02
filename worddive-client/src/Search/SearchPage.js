@@ -11,18 +11,18 @@ export default function SearchPage(props){
     console.log(params.query)
     const fetchSearchData = async () => {
         setResults()
-        const json = await fetch('http://20191101t163354-dot-worddive-1572382941629.appspot.com/search/' + params.query).then(blob => blob.json())
+        const json = await fetch('https://worddive-1572382941629.appspot.com/search/' + params.query).then(blob => blob.json())
         setResults(json)
     }
 
-    useEffect(() => {fetchSearchData()}, [params.query])
+    useEffect(() => {fetchSearchData()}, [])
 
     return (
     <Box>
         <Typography variant="h3">{params.query}</Typography>
-        {results ?
+        {results && results.length > 0 ?
             <List>
-                {results.map((x, i) => <ListItem><LookupWord lemma={x.id} display={x.word}/></ListItem>)}
+                {results.map((x, i) => <ListItem><LookupWord lemmas={[x.id]} display={x.word}/></ListItem>)}
             </List>
         : <Searchable>"No results found"</Searchable>
         }

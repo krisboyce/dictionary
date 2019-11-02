@@ -30,7 +30,7 @@ export default class Searchable extends React.Component{
         {text.split(' ').map((x, i) => {
             return <React.Fragment key={i}>
                 {i > 0 ? ' ' : null}
-                {x !== '' ? <LookupWord key={i} lemma={x} display={x}/> : ' '}
+                {x !== '' ? <LookupWord key={i} word={x} display={x}/> : ' '}
             </React.Fragment>
         })}</React.Fragment>
     }

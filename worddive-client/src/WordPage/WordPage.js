@@ -14,6 +14,9 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         justifyContent: "center",
         flex: 1
+    },
+    word_header:{
+        padding:'1rem'
     }
 })
 
@@ -26,8 +29,7 @@ export default function WordPage(){
     const fetchWordData = async () =>
     {
         setData()
-        let result = await fetch('http://20191101t163354-dot-worddive-1572382941629.appspot.com/define/' + params.word).then(blob => blob.json())
-        console.log(result)
+        let result = await fetch('https://worddive-1572382941629.appspot.com/define/' + params.word).then(blob => blob.json())
         if(result.length === 0)
             setNoResult(true)
 
@@ -35,10 +37,18 @@ export default function WordPage(){
     }
 
     useEffect(() => {fetchWordData()}, [params.word])
+    const homeRedirects = [
+        'worddive',
+        'worddiving',
+        'worddive.curiouslyrecurring.net',
+        'worddove',
+        'worddiver'
+    ]
 
     return (<Box className={classes.root}>
+        {homeRedirects.filter(x => x === params.word.toLowerCase()).length > 0 ? <Redirect to="/"/> : null}
         <Paper >
-            <Typography align="center" variant="h3">{(data ? "" : "loading ")} <LookupWord lemma={params.word} display={params.word.replace(/_/g, ' ')}/></Typography>
+            <Typography className={classes.word_header} align="center" variant="h3">{(data ? "" : "loading ") + decodeURIComponent(params.word).replace(/_/g, ' ')}</Typography>
             <List width="100%">
                 {noResult ? <Redirect to={'/find/' + params.word}/> : null}
                 {data ? data.map((x, i) => <ListItem key={i}><Word data={x}/></ListItem>) : null}
