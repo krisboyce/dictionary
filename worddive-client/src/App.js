@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import WordPage from './WordPage/WordPage';
 import { HomePage } from './home';
-import { CssBaseline, Container, createMuiTheme, MuiThemeProvider, responsiveFontSizes, useMediaQuery } from '@material-ui/core';
+import { CssBaseline, createMuiTheme, MuiThemeProvider, responsiveFontSizes, useMediaQuery } from '@material-ui/core';
 import Header from './Layout/Header';
 import SearchPage from './Search/SearchPage';
 
@@ -37,12 +37,9 @@ function App() {
             <MuiThemeProvider theme={theme}>
               <CssBaseline />
               <Header/>
-
-              <Container display="flex" >
-                <Route exact path="/" component={HomePage}></Route>
-                <Route path="/dive/:word" component={WordPage}></Route>
-                <Route path="/find/:query" component={SearchPage}></Route>
-              </Container>
+              <Route exact path="/" component={HomePage}></Route>
+              <Route path="/dive/:word" component={WordPage}></Route>
+              <Route path="/find/:query" component={SearchPage}></Route>
             </MuiThemeProvider>
           </Router>)
 }

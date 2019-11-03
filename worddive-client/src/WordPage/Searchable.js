@@ -1,16 +1,22 @@
 import React from 'react'
 import LookupWord from './LookupWord'
 
-export default class Searchable extends React.Component{
-    constructor(props){
-        super(props)
+export default function Searchable(props){
+    const make_searchable = (text) => {
+        return <React.Fragment>
+        {text.split(' ').map((x, i) => {
+            return <React.Fragment key={i}>
+                {i > 0 ? ' ' : null}
+                {x !== '' ? <LookupWord key={i} word={x} display={x}/> : ' '}
+            </React.Fragment>
+        })}</React.Fragment>
+    }
 
-        this.element = React.createRef();
-
-        this.render_elements = React.Children.map(this.props.children, (x, i) => {
+    const render_elements = () => { 
+        return React.Children.map(props.children, (x, i) => {
             if(x != null){
                 if(typeof x == 'string'){
-                    return this.make_searchable(x)
+                    return make_searchable(x)
                 }else if(x.type === Searchable || x.type === LookupWord){
                     return x
                 }else{
@@ -25,17 +31,5 @@ export default class Searchable extends React.Component{
         })
     }
 
-    make_searchable(text){
-        return <React.Fragment>
-        {text.split(' ').map((x, i) => {
-            return <React.Fragment key={i}>
-                {i > 0 ? ' ' : null}
-                {x !== '' ? <LookupWord key={i} word={x} display={x}/> : ' '}
-            </React.Fragment>
-        })}</React.Fragment>
-    }
-
-    render(){
-        return <React.Fragment>{this.render_elements}</React.Fragment>
-    }
+    return <React.Fragment>{render_elements()}</React.Fragment>
 }

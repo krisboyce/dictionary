@@ -1,28 +1,32 @@
 import React, {useState} from 'react'
-import { TextField, IconButton } from '@material-ui/core'
+import { InputBase, IconButton, Paper } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/styles';
 import { Redirect } from 'react-router-dom'
 
 
 const useStyles = makeStyles(theme => ({
-  search:{
-    display:'flex',
-    flexDirection:'row',
-    verticalAlign:'center'
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
   },
-  input:{
-    color:'inherit',
+  form: {
+    display:'flex',
+    flex: 1
+  },
+  input: {
     marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    margin: 'dense',
-    borderColor: '#fff'
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+    flex: 0
   }
 }));
 
+
 const useSearch = (callback) => {
   const [query, setQuery] = useState();
-
   const handleSubmit = (event) => {
     if (event){
       event.preventDefault();
@@ -49,18 +53,18 @@ export default function SearchBox(props){
   }
 
   const [handleSubmit, handleInputChange, query] = useSearch(runSearch)
-  return (<form className={classes.search} onSubmit={handleSubmit}>
-    <TextField className={classes.input}
-      variant="outlined"
-      label="Search"
-      margin="normal"
-      name="query-input"
-      inputProps={{ 'aria-label': 'search' }}
-      onChange={handleInputChange}
-    />
-    <IconButton color="inherit" type="submit">
-      <SearchIcon />
-    </IconButton>
+  return (<Paper className={classes.root}>
+    <form className={classes.form} onSubmit={handleSubmit}>
+    <InputBase
+        className={classes.input}
+        placeholder="Search..."
+        inputProps={{ 'aria-label': 'search words' }}
+        onChange={handleInputChange}
+        name='query-input'
+      />
+      <IconButton className={classes.iconButton} aria-label="search" type='submit'>
+        <SearchIcon />
+      </IconButton>
     {doRedirect ? <Redirect to={"/find/" + query["query-input"]}/> : null}
-  </form>)
+  </form></Paper>)
 }
