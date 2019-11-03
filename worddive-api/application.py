@@ -34,6 +34,10 @@ def lemma(word):
 
     return JsonResponse(lemmas)
 
+@app.route('/random')
+def random():
+    service = WordService()
+    return JsonResponse(service.random())
 
 def JsonResponse(data: Any):
     return Response(json.dumps(data, default=lambda o: o.__dict__, indent=4), mimetype='application/json', headers={'Access-Control-Allow-Origin': '*'})

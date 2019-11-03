@@ -1,4 +1,7 @@
 from typing import List, Any
+import re
+import string
+from random import choice, randint
 from .oxford_api.oxford_api_client import OxfordApiService
 from .oxford_api.models.thesaurus import Thesaurus
 from .oxford_api.models.headword_thesaurus import HeadwordThesaurus
@@ -7,11 +10,12 @@ from .oxford_api.models.thesaurus_entry import ThesaurusEntry
 from .oxford_api.models.thesaurus_sense import ThesaurusSense
 from .oxford_api.models.synonym_antonym import SynonymAntonym
 from .oxford_api.models.search_result import SearchResult
+from .oxford_api.models.headword_lemmatron import HeadwordLemmatron
 from .word import Word
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
-import re
+
 
 class WordService:
     def __init__(self):
@@ -58,8 +62,18 @@ class WordService:
 
         return words
 
-    def get_lemmas(self, word: str) -> Any:
-        return self._dictionary.lemma(word)
+    def random(self):
+        alphabet = list(string.ascii_lowercase + ' ' + '_')
+        query = ' '.join([choice(alphabet) for i in range(randint(1, 8))])
+        results = []
+        while len(results) == 0:
+            results = self._dictionary.search(query).results
+            query = ''.join([choice(alphabet) for i in range(randint(1, 8))])
+
+        return choice(results)
+
+    def get_lemmas(self, word: str) -> List[HeadwordLemmatron]:
+        return self._dictionary.lemma(word).results
 
     def analyze(self, text: str) -> Any:
         client = language.LanguageServiceClient()
