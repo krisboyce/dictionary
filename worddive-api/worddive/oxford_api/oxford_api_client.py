@@ -4,6 +4,7 @@ import requests
 from .models.retrieve_entry import RetrieveEntry
 from .models.thesaurus import Thesaurus
 from .models.wordlist import Wordlist
+from .models.lemmatron import Lemmatron
 
 
 class OxfordApiService:
@@ -20,8 +21,11 @@ class OxfordApiService:
     def thesaurus(self, word: str, language:str = 'en-us', params:Dict[str, str] = {}) -> Thesaurus:
         return Thesaurus(self._get('thesaurus/'+ language +'/' + word, params=params))
 
-    def search(self, query: str, language: str, params:Dict[str, str] = {}) -> Wordlist:
+    def search(self, query: str, language: str = 'en-us', params:Dict[str, str] = {}) -> Wordlist:
         return Wordlist(self._get('search/' + language + '?q=' + query, params))
+
+    def lemma(self, word: str, language: str = 'en-us', params:Dict[str, str] = []) -> Lemmatron:
+        return Lemmatron(self._get('lemmas/' + language + '/' + word, params=params))
 
     def _get(self, route, headers={}, params={}):
         res = requests.get(self._uri + route, params=params,

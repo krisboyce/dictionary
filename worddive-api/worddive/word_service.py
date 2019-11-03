@@ -58,7 +58,10 @@ class WordService:
 
         return words
 
-    def get_lemma(self, text: str) -> Any:
+    def get_lemmas(self, word: str) -> Any:
+        return self._dictionary.lemma(word)
+
+    def analyze(self, text: str) -> Any:
         client = language.LanguageServiceClient()
         document = types.Document(
             content=text,
