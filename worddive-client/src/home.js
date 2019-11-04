@@ -41,7 +41,8 @@ export function HomePage(props){
                     "All you need to start worddiving is to click on any word on this page."
                 ],
                 synonyms: [],
-                antonyms: []
+                antonyms: [],
+                domains: []
             },
             {
                 lexical_category: "Verb",
@@ -52,7 +53,8 @@ export function HomePage(props){
                     "Not now ma, I'm worddiving!"
                 ],
                 synonyms: [],
-                antonyms: []
+                antonyms: [],
+                domains: []
             },
             {
                 lexical_category: "Noun",
@@ -63,7 +65,8 @@ export function HomePage(props){
                     "I really should be studying but I went on a worddive instead."
                 ],
                 synonyms: [],
-                antonyms: []
+                antonyms: [],
+                domains: []
             },
             {
                 lexical_category: "Noun",
@@ -74,7 +77,8 @@ export function HomePage(props){
                     "Hey, you should check out this cool new webpage called 'worddive.curiouslyrecurring.net'. It's a freakin' blast!"
                 ],
                 synonyms: [],
-                antonyms: []
+                antonyms: [],
+                domains: []
             }]
     };
 

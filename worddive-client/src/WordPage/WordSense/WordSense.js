@@ -20,8 +20,8 @@ export default function WordSense(props) {
     console.log(props.data)
     return (<Searchable>
             <Box className={classes.root}>
-                {props.data.lexical_category}
-                {props.data.definitions.map((x, i) => <Definition data={x} index={i} key={i}/>)}
+                <Typography variant='body1'><i>{props.data.lexical_category}</i></Typography>
+                {props.data.definitions.map((x, i) => <Definition data={x} index={props.index+i} key={i}/>)}
 
                 {props.data.domains.length > 0 ? <Typography>{"Domains: " + props.data.domains.join(', ').replace(/_/g, ' ')}</Typography> : null}
                 <br />

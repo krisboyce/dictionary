@@ -48,7 +48,7 @@ const renderList = (title, data, Component, className) => {
         <Fragment>
             {title} <Box className={className}>
                 {data.map((x, i) => <Fragment key={i}>
-                    <Component data={x} /> 
+                    <Component data={x} index={i} /> 
                     { i < data.length - 1 ? <Divider /> : null}
                     </Fragment>)}
             </Box>

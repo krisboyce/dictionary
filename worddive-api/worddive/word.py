@@ -46,7 +46,7 @@ class Word:
                 for entry in lex_entry.entries
                     for base_sense in entry.senses
                             for sense in 
-                                [WordSense(lex_entry.lexical_category.text if lex_entry.lexical_category else '', base_sense)] 
-                                + list(map(lambda x: WordSense(lex_entry.lexical_category.text if lex_entry.lexical_category else '', x, base_sense), base_sense.subsenses))]
+                                [WordSense(lex_entry, base_sense)] 
+                                + list(map(lambda x: WordSense(lex_entry, x, base_sense), base_sense.subsenses))]
 
         self.cross_references: List[str] = []
